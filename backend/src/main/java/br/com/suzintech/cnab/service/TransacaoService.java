@@ -1,6 +1,5 @@
 package br.com.suzintech.cnab.service;
 
-import br.com.suzintech.cnab.entity.TipoTransacao;
 import br.com.suzintech.cnab.entity.TransacaoReport;
 import br.com.suzintech.cnab.repository.TransacaoRepository;
 import org.springframework.stereotype.Service;
@@ -24,9 +23,8 @@ public class TransacaoService {
         var reportMap = new LinkedHashMap<String, TransacaoReport>();
 
         transacoes.forEach(transacao -> {
-            String nomeDaLoja = transacao.nomeDaLoja();
-            var tipoTransacao = TipoTransacao.findByTipo(transacao.tipo());
-            BigDecimal valor = transacao.valor().multiply(tipoTransacao.getSinal());
+            var nomeDaLoja = transacao.nomeDaLoja();
+            var valor = transacao.valor();
 
             reportMap.compute(nomeDaLoja, (key, existingReport) -> {
                 var report = (existingReport != null) ? existingReport :
