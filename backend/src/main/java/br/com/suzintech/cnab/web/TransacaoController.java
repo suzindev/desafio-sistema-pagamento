@@ -2,6 +2,7 @@ package br.com.suzintech.cnab.web;
 
 import br.com.suzintech.cnab.entity.TransacaoReport;
 import br.com.suzintech.cnab.service.TransacaoService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +20,7 @@ public class TransacaoController {
     }
 
     @GetMapping
+    @CrossOrigin(origins = {"http://localhost:9090"})
     List<TransacaoReport> listAll() {
         return transacaoService.listTotaisTransacoesPorNomeDaLojas();
     }
